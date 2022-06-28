@@ -2,7 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 
 const Layout: React.FC = () => {
   return (
-    <div style={{ color: "red", textAlign: "left" }}>
+    <div style={{ color: "blue", textAlign: "left" }}>
       <nav>
         <ul>
           <li>
