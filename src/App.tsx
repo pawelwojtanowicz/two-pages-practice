@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Photos from "./Photos";
-import Users from "./Users";
+import Users from "./userify-components/Users";
 import Layout from "./Layout";
 import Rooms from "./Rooms";
 import Cities from "./Cities";
