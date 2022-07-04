@@ -7,10 +7,18 @@ import { TextField } from "@mui/material";
 
 interface Props {}
 
-const UserTextField: React.FC<Props> = ({ id, label }) => {
+const UserTextField: React.FC<Props> = ({ id, label, onChangeHandler }) => {
   return (
     <Box>
-      <TextField id={id} label={label} variant="outlined" size="small" />
+      <TextField
+        id={id}
+        label={label}
+        variant="outlined"
+        size="small"
+        onChange={(e) => {
+          onChangeHandler(e.target.value);
+        }}
+      />
     </Box>
   );
 };
