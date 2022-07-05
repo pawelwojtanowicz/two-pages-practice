@@ -3,22 +3,44 @@ import MyAppBar from "./MyAppBar";
 import UserList from "./UserList";
 import AddingSpace from "./AddingSpace";
 import { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { User } from "./types";
 
 const Users = () => {
   const [show, setShow] = useState(false);
-  const [users, setUsers] = useState([]);
-  const userPropsList = users.map((user) => (
-    <Box sx={{ bgcolor: "LightSteelBlue", width: 215, height: 70 }}>
-      <li key="user">{user}</li>
-    </Box>
-  ));
+  const [users, setUsers] = useState<User[]>([]);
+
+  const showAddUsers = () => {
+    setShow(true);
+  };
+
+  const hideAddUsers = () => {
+    setShow(false);
+  };
+
+  const addUser = (newUser: User) => {
+    setUsers((currentUsers) => {
+      console.log(currentUsers);
+
+      return [...currentUsers, newUser];
+    });
+  };
+
   return (
     <div>
       This is Users page!
       <MyAppBar />
-      <UserList setShow={setShow} show={show} userPropsList={userPropsList} />
-      {show ? <AddingSpace setUsers={setUsers} /> : ""}
+      <UserList users={users} />
+      <Button
+        onClick={() => {
+          showAddUsers();
+        }}
+      >
+        Add user +
+      </Button>
+      {show ? (
+        <AddingSpace hideAddUsers={hideAddUsers} addUser={addUser} />
+      ) : null}
     </div>
   );
 };

@@ -1,21 +1,27 @@
 // @ts-nocheck
+
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import UserTextField from "./UserTextField";
 import { useState } from "react";
+import { User } from "./types";
 
 interface Props {
-  setUsers;
+  hideAddUsers: () => void;
+  addUser: (newUser: User) => void;
 }
 
-const AddingSpace: React.FC<Props> = ({ setUsers }) => {
+const AddingSpace: React.FC<Props> = ({ addUser, hideAddUsers }) => {
   const [name, setName] = useState();
   const [lastName, setLastName] = useState();
   const [age, setAge] = useState();
-  const change = () => {
-    setUsers([name, lastName, age]);
+
+  const changeUsers = () => {
+    addUser({ name, age, id: 2 });
+    hideAddUsers();
   };
+
   return (
     <div>
       <Box ml={3} textAlign="left">
@@ -36,7 +42,7 @@ const AddingSpace: React.FC<Props> = ({ setUsers }) => {
           />
           <UserTextField id="age" label="age" onChangeHandler={setAge} />
         </Box>
-        <Button variant="contained" onClick={change}>
+        <Button variant="contained" onClick={changeUsers}>
           {"Submit -->"}
         </Button>
       </Box>

@@ -1,27 +1,24 @@
-// @ts-nocheck
-import { Box } from "@mui/material";
+import { Box, List, ListItem } from "@mui/material";
 import { Typography } from "@mui/material";
-import { Button } from "@mui/material";
+import { User } from "./types";
 
 interface Props {
-  setShow;
-  show;
-  userPropsList;
+  users: User[];
 }
 
-const UserList: React.FC = ({ setShow, show, userPropsList }) => {
-  const onChange = () => {
-    setShow(!show);
-  };
+const UserList: React.FC<Props> = ({ users }) => {
   return (
     <Box ml={3} textAlign="left">
       <Typography>User List</Typography>
 
-      {userPropsList}
-
-      <Button variant="contained" onClick={onChange}>
-        Add (+)
-      </Button>
+      <List>
+        {users.map((user) => (
+          <ListItem key={user.id}>
+            <div>name: {user.name}</div>
+            <div>age: {user.age}</div>
+          </ListItem>
+        ))}
+      </List>
     </Box>
   );
 };
